@@ -26,6 +26,9 @@ to the Facebook Page and Instagram, and logs it in `posted.log`.
   script, hook or caption. Every run = brand-new script, new scenes, new caption. Check posted.log and the
   existing files in videos/ before writing.
 
+## Font
+Arabic text uses Cairo (tools/fonts, OFL licence): render.AR = Cairo-ExtraBold, AR_BLACK for big headlines, AR_REG = Cairo-SemiBold. Cairo has no ✓, text_img draws it with a fallback font automatically.
+
 ## Voice
 ElevenLabs connector, voice "علي البزاز" voice_id `7GuGTyc18I5wWanLbbNq`, model `eleven_v4`,
 generations_count 1, use creative_create_flow or the flow `OlAnO6Js6QgnCkILfpfC`.

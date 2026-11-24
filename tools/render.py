@@ -9,8 +9,11 @@ N = int(DUR * FPS)
 NAVY = (5, 11, 26); DNAVY = (7, 19, 38); BLUE = (0, 102, 255); CYAN = (0, 212, 255)
 PURPLE = (123, 44, 255); WHITE = (255, 255, 255); GRAY = (169, 184, 204)
 
-AR = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-AR_REG = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+import os as _os
+_FD = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "fonts")
+AR = _os.path.join(_FD, "Cairo-ExtraBold.ttf")
+AR_BLACK = _os.path.join(_FD, "Cairo-Black.ttf")
+AR_REG = _os.path.join(_FD, "Cairo-SemiBold.ttf")
 EN = "/usr/share/fonts/opentype/inter/InterDisplay-ExtraBold.otf"
 EN_SB = "/usr/share/fonts/opentype/inter/Inter-SemiBold.otf"
 
@@ -36,7 +39,7 @@ def gradient(w, h, c1, c2, c3=None):
     return Image.fromarray(out.astype("uint8"), "RGB")
 
 @lru_cache(None)
-def text_img(s, path, size, color=WHITE, grad=None, rtl=True, glow=0):
+def _text_img(s, path, size, color=WHITE, grad=None, rtl=True, glow=0):
     f = font(path, size)
     kw = dict(direction="rtl", language="ar") if rtl else {}
     d = ImageDraw.Draw(Image.new("L", (1, 1)))
@@ -56,6 +59,23 @@ def text_img(s, path, size, color=WHITE, grad=None, rtl=True, glow=0):
         img.paste(gcol, (0, 0), gm)
     img.paste(fill, (0, 0), mask)
     return img
+
+_FALLBACK = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+
+@lru_cache(None)
+def text_img(s, path, size, color=WHITE, grad=None, rtl=True, glow=0):
+    # Cairo has no check mark: draw it with a fallback font at the end of the line
+    if "✓" in s and path != _FALLBACK:
+        main = _text_img(s.replace("✓", "").strip(), path, size, color, grad, rtl, glow)
+        mark = _text_img("✓", _FALLBACK, int(size * 0.85), color, None, False, glow)
+        gap = int(size * 0.25)
+        w = main.width + mark.width - 80 + gap
+        h = max(main.height, mark.height)
+        out = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        out.alpha_composite(mark, (0, (h - mark.height) // 2))
+        out.alpha_composite(main, (mark.width - 80 + gap, (h - main.height) // 2))
+        return out
+    return _text_img(s, path, size, color, grad, rtl, glow)
 
 def place(frame, img, cx, cy, alpha=1.0, scale=1.0):
     if alpha <= 0.01: return
