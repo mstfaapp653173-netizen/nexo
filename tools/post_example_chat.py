@@ -67,9 +67,9 @@ for k in range(3):
     m = Image.new("L", g.size, 0); ImageDraw.Draw(m).rounded_rectangle((0, 0, 104, 64), 14, fill=255)
     card.paste(g, (53, 53), m)
     ImageDraw.Draw(card).rounded_rectangle((58, 128, 125, 140), 6, fill=(169, 184, 204, 120))
-    place(f, card, PX + 160 - k * 160, y + 285)
+    place(f, card, PX + 160 - k * 160, y + 270)
 b = bot_b("تم تثبيت طلبك ✓", 34)
-place(f, b, PX, y + 378)
+place(f, b, PX, y + 392)
 brackets(f, PX, PY, 640, 0, 5.0)
 
 # side chips
