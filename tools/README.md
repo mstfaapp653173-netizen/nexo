@@ -1,6 +1,6 @@
 # NEXO auto video ads — playbook
 
-Every run makes ONE brand-new vertical video ad (1080x1920, 30fps, 25–35 s) for NEXO, posts it as a Reel
+Every run makes ONE brand-new vertical video ad (1080x1920, 30fps, ~50 s, owner's choice) for NEXO, posts it as a Reel
 to the Facebook Page and Instagram, and logs it in `posted.log`.
 
 ## Brand (do not change)
@@ -17,7 +17,7 @@ to the Facebook Page and Instagram, and logs it in `posted.log`.
   shows products, confirms orders, 24/7) and professional websites.
 
 ## Algorithm rules (Instagram + Facebook Reels)
-- Length 25–35 s (completion rate matters most). Script 45–65 words.
+- Length ~50 s (owner's requirement). Script 95–115 words. Keep it moving: a new visual every 2–4 s so viewers keep watching.
 - First second must make a shop owner think "this is me" (friendly, never aggressive).
 - End every video and caption with a send prompt, e.g. "دزه لصاحب محل تعرفه" (DM sends are the strongest signal).
 - Caption: include natural search keywords (بوت رد تلقائي، موظف مبيعات ذكي، تصميم مواقع بالعراق، مطاعم، محلات).
@@ -30,9 +30,16 @@ to the Facebook Page and Instagram, and logs it in `posted.log`.
 ElevenLabs connector, voice "علي البزاز" voice_id `7GuGTyc18I5wWanLbbNq`, model `eleven_v4`,
 generations_count 1, use creative_create_flow or the flow `OlAnO6Js6QgnCkILfpfC`.
 Download content_url with curl (elevenlabsusercontent.com is allowed). Get phrase timings with
-`ffmpeg -af silencedetect=n=-35dB:d=0.18`. Keep the script 45–65 words (≈600 credits max).
+`ffmpeg -af silencedetect=n=-35dB:d=0.18`. Keep the script 95–115 words (≈800 credits).
 Account is on the free tier (~10k credits/month): check `account_get_usage` first; if fewer than 900 credits
 remain, skip the run and report it.
+If a generation fails with "busy" (nothing is charged), wait 3 minutes and try again, up to 8 attempts.
+If it is still busy, create a one-time scheduled task 1 hour later that repeats this whole run, and stop.
+
+## Ready queue
+If `queue/` holds a finished video (`queue/nexo-ad-N.mp4` + `queue/nexo-ad-N.txt` caption) that is NOT in
+posted.log, publish that one instead of making a new video: move it to `videos/`, post it with its caption,
+log it, and delete it from queue/.
 
 ## Rendering
 `tools/` holds the helpers: `render.py` (text/gradient/rounded/place/easing), `style_ad.py`
