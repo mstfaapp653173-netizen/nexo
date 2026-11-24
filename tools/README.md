@@ -75,3 +75,30 @@ Check a contact sheet of frames before posting (text must not overlap, must fit 
 8. موقعك هو محلك اللي ما يسكّر
 9. أسئلة الزبائن المتكررة والبوت يجاوبها
 10. كيف تبدي ويا NEXO بـ 3 خطوات
+
+# Image posts (days without a video)
+On days with no video, one brand-new image post (1080x1350 JPEG, 4:5) goes to the Facebook Page and Instagram.
+- Same brand rules as above: NEXO colors, Cairo font, Iraqi dialect, NO prices/discounts/offers, no invented stats
+  or testimonials, soft CTA + send prompt ("دزّ البوست لصاحب محل تعرفه") in the caption.
+- Quality bar: `tools/post_example_features.py` (neon pill poster, devices, feature list, categories, CTA, trust
+  badges) and `tools/post_example_chat.py`. Every element must fit inside its box; check the rendered JPEG before posting.
+- EVERY post must differ from all previous ones in BOTH idea and layout. Check `tools/posted_images.log`.
+  Never re-post an image, never reuse a headline or caption.
+- Ready queue first: if `queue_images/` holds a JPEG + .txt caption not yet in posted_images.log, post that one.
+
+Idea rotation (one per post, then invent new angles):
+1. Features poster  2. One big question in huge type ("زبونك راسلك وما رديت؟")  3. Real-looking chat mockup
+4. Before / after split  5. Checklist: "محلك يحتاج بوت إذا…"  6. Myth vs fact  7. 3 steps to start
+8. Industry card: restaurants  9. Industry card: clothing shops  10. Website mockup showcase
+11. Comparison: employee vs AI sales bot (no prices)  12. FAQ card (common questions answered)
+13. Industry card: salons  14. "Your shop never closes" night scene  15. Tip card: how to reply faster to customers
+
+Layout styles (rotate, never the same as the previous post): neon pill poster; minimal giant typography;
+split screen; device-mockup hero; card grid; diagonal ribbons; vertical timeline; big centered icon in brackets;
+chat-bubble collage; table/comparison board.
+
+Publish: commit to `images/nexo-post-N.jpg`, push, wait ~90 s, URL
+`https://mstfaapp653173-netizen.github.io/nexo/images/nexo-post-N.jpg`.
+Instagram `create_image_post` (account 17841480845121566, image_url, caption) and Facebook `create_photo_post`
+(account 1354552747749075, image_url, caption). Retry a failed publish after 2 minutes, up to 3 times.
+Append: date | N | idea | layout | ig media id | fb post id to tools/posted_images.log.
