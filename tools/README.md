@@ -110,3 +110,13 @@ Publish: commit to `images/nexo-post-N.jpg`, push, wait ~90 s, URL
 Instagram `create_image_post` (account 17841480845121566, image_url, caption) and Facebook `create_photo_post`
 (account 1354552747749075, image_url, caption). Retry a failed publish after 2 minutes, up to 3 times.
 Append: date | N | idea | layout | ig media id | fb post id to tools/posted_images.log.
+
+# TikTok (via the Buffer connector)
+Buffer organization "My organization" id `6b0667492579815fa19d025f`, TikTok channel "nexodevloper" id
+`6b0667f28541f09ecb96f105`. Publish every video AND every image post there too, right after Facebook/Instagram:
+`create_post` with channelId above, schedulingType "automatic", mode "shareNow", assets = [{video:{url, metadata:{thumbnailOffset:0}}}]
+(or [{image:{url, metadata:{altText}}}] for image posts), metadata.tiktok = {title (short, Arabic), isAiGenerated: true}.
+TikTok caption: shorter than the Facebook one (max ~150 chars before hashtags), same rules (Iraqi dialect, no prices),
+send prompt, 5–7 hashtags incl. #نيكسو #NEXO and one broad tag like #fyp. Check the post with get_post after ~2 minutes;
+status "sent" = done, "error" = retry once after 2 minutes. Log the Buffer post id in the log line.
+Free Buffer plan: max 10 scheduled posts at once — always use shareNow, never fill the queue.
