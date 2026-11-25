@@ -121,3 +121,11 @@ TikTok caption: shorter than the Facebook one (max ~150 chars before hashtags), 
 send prompt, 5–7 hashtags incl. #نيكسو #NEXO and one broad tag like #fyp. Check the post with get_post after ~2 minutes;
 status "sent" = done, "error" = retry once after 2 minutes. Log the Buffer post id in the log line.
 Free Buffer plan: max 10 scheduled posts at once — always use shareNow, never fill the queue.
+
+# DAILY SCHEDULE (owner's instruction, 2026-11-25) — supersedes "every 2 days" / "days without a video"
+- Image post EVERY DAY at 10:00 AM Baghdad → Instagram + Facebook only.
+- Reel EVERY DAY at 8:00 PM Baghdad → Instagram + Facebook + TikTok.
+- Never late: content is prepared a day ahead by the nightly prep task (~9:15 PM) into `queue/` (nexo-ad-N.mp4 + .txt)
+  and `queue_images/` (nexo-post-N.jpg + .txt). The 10 AM / 8 PM tasks ONLY publish the oldest ready item.
+- Each .txt: line 1 = "concept: ... | layout: ...", then the FB/IG caption, then a line `TIKTOK:` followed by the short TikTok caption (videos only).
+- Keep at least 1 video and 2 images ready in the queues at all times.
