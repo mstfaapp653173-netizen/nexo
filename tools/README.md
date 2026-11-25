@@ -112,6 +112,7 @@ Instagram `create_image_post` (account 17841480845121566, image_url, caption) an
 Append: date | N | idea | layout | ig media id | fb post id to tools/posted_images.log.
 
 # TikTok (via the Buffer connector)
+**VIDEOS ONLY on TikTok** — owner said image posts do NOT go to TikTok (Instagram + Facebook only).
 Buffer organization "My organization" id `6b0667492579815fa19d025f`, TikTok channel "nexodevloper" id
 `6b0667f28541f09ecb96f105`. Publish every video AND every image post there too, right after Facebook/Instagram:
 `create_post` with channelId above, schedulingType "automatic", mode "shareNow", assets = [{video:{url, metadata:{thumbnailOffset:0}}}]
