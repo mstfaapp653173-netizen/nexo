@@ -65,6 +65,9 @@ Check a contact sheet of frames before posting (text must not overlap, must fit 
 1. Commit the mp4 to `videos/nexo-ad-N.mp4` in this repo and push to `main`
    (`git -c push.negotiate=true push origin HEAD`). Wait ~90 s for GitHub Pages.
 2. Public URL: `https://mstfaapp653173-netizen.github.io/nexo/videos/nexo-ad-N.mp4`
+   If GitHub Pages deploy fails/404s (happened 2026-11-25), use the raw URL instead — it worked for IG, FB and Buffer:
+   `https://raw.githubusercontent.com/mstfaapp653173-netizen/nexo/main/videos/nexo-ad-N.mp4`.
+   Check the latest "pages build and deployment" run right after pushing, not at publish time.
 3. Windsor connector:
    - Instagram `create_video_post`, account `17841480845121566`, share_to_feed true, caption.
    - Facebook `create_reel`, account `1354552747749075`, description = same caption.
