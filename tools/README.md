@@ -22,6 +22,10 @@ to the Facebook Page and Instagram, and logs it in `posted.log`.
 - End every video and caption with a send prompt, e.g. "دزه لصاحب محل تعرفه" (DM sends are the strongest signal).
 - Caption: include natural search keywords (بوت رد تلقائي، موظف مبيعات ذكي، تصميم مواقع بالعراق، مطاعم، محلات).
 - Original visuals, voice and music only.
+- FIRST FRAME = COVER: Facebook uses frame 0 as the Reel thumbnail. Frame 0 must already show a strong title card
+  (big headline + icon, fully visible, no fade-in from an empty background). Never start on an empty background.
+  For Instagram also pass thumb_offset (ms) pointing at the most readable frame.
+- Burned-in captions must be large and high-contrast for the whole video (Facebook favours captioned Reels).
 - NEVER post the same video twice, never re-upload or re-post an earlier video, and never reuse an earlier
   script, hook or caption. Every run = brand-new script, new scenes, new caption. Check posted.log and the
   existing files in videos/ before writing.
