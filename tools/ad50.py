@@ -429,15 +429,12 @@ def scene_outro(f, t):
     place(f, text_img("Connect to the Future.", EN_SB, 40, GRAY, rtl=False), CX, 1760, ease_out(prog(t, 44.3, 0.5)))
 
 def progress(f, t):
-    w = int(W * clamp(t / DUR))
-    if w > 0: f.alpha_composite(gradient(w, 8, BLUE, CYAN).convert("RGBA"), (0, H - 8))
 
 def frame(i):
     t = i / FPS
     f = background(t)
     scene_hook(f, t); scene_problem(f, t); scene_bot(f, t); scene_site(f, t); scene_steps(f, t); scene_outro(f, t)
     if 4.6 < t < 12.5: captions(f, t)
-    progress(f, t)
     return f.convert("RGB")
 
 if __name__ == "__main__":

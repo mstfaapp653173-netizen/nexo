@@ -25,6 +25,10 @@ to the Facebook Page and Instagram, and logs it in `posted.log`.
 - FIRST FRAME = COVER: Facebook uses frame 0 as the Reel thumbnail. Frame 0 must already show a strong title card
   (big headline + icon, fully visible, no fade-in from an empty background). Never start on an empty background.
   For Instagram also pass thumb_offset (ms) pointing at the most readable frame.
+- NO BORDER: colour/texture must reach all four edges (style_ad.make_bg is full-bleed). No progress bars,
+  frames or flat bands along the edges — Facebook's quality check flags them as "video has a border".
+- Caption: 10–300 characters INCLUDING hashtags (Facebook's check wants 10–400; stay well under), at most 2 line
+  breaks, max 2 emojis, 4–5 hashtags.
 - Burned-in captions must be large and high-contrast for the whole video (Facebook favours captioned Reels).
 - NEVER post the same video twice, never re-upload or re-post an earlier video, and never reuse an earlier
   script, hook or caption. Every run = brand-new script, new scenes, new caption. Check posted.log and the

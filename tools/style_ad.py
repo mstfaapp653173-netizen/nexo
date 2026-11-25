@@ -26,7 +26,20 @@ LINE_END = {0: 1.45, 1: 2.6, 2: 3.7, 3: 4.68, 4: 6.1, 5: 7.45, 6: 9.15}
 
 # ---------- background ----------
 def make_bg():
-    bg = Image.new("RGBA", (W, H), NAVY + (255,))
+    # full-bleed: colour and texture reach every edge so Facebook does not detect a border/letterbox
+    import numpy as np
+    y = np.linspace(0, 1, H)[:, None]; x = np.linspace(0, 1, W)[None, :]
+    top = np.array((8, 26, 64), float); mid = np.array(NAVY, float); bot = np.array((24, 12, 58), float)
+    k = y[..., None]
+    base = np.where(k < 0.5, top + (mid - top) * (k / 0.5), mid + (bot - mid) * ((k - 0.5) / 0.5))
+    base = base + (np.array((0, 40, 90), float) * (1 - x[..., None]) * 0.25 * (1 - k))
+    rng = np.random.default_rng(11)
+    base = base + rng.normal(0, 3.2, base.shape[:2])[..., None]
+    bg = Image.fromarray(np.clip(base, 0, 255).astype("uint8"), "RGB").convert("RGBA")
+    edge = Image.new("L", (W, H), 0); ed = ImageDraw.Draw(edge)
+    for i in range(0, 260, 4):
+        ed.rectangle((i, i, W - i, H - i), outline=int(26 * (1 - i / 260)))
+    bg.paste(Image.new("RGBA", (W, H), BLUE + (255,)), (0, 0), edge.filter(ImageFilter.GaussianBlur(40)))
     glow = Image.new("L", (W, H), 0)
     ImageDraw.Draw(glow).ellipse((CX - 520, CY - 520, CX + 520, CY + 520), fill=255)
     glow = glow.filter(ImageFilter.GaussianBlur(220)).point(lambda v: int(v * 0.35))

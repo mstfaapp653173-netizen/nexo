@@ -1,5 +1,5 @@
 import sys, os, math, re, json, subprocess
-sys.path.insert(0, "/home/claude/nexo/tools")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from functools import lru_cache
 from PIL import Image, ImageDraw, ImageFilter
 from style_ad import (background, brackets, word_img, blurred, chat_icon, site_card, bot_icon, bot_eyes,
@@ -102,8 +102,8 @@ def captions(f, t, y=TY):
         gap = -40; total = sum(im.width for im in imgs) + gap * (len(imgs) - 1)
         sc = min(1.0, 980 / max(total, 1)); x = W / 2 + total * sc / 2
         for (w, a, st), im in zip(ws, imgs):
-            if t >= st:
-                p = ease_out(prog(t, st, 0.24))
+            if t >= st - 0.2 or st < 0.7:
+                p = 1.0 if st < 0.7 else ease_out(prog(t, st - 0.2, 0.24))
                 place(f, blurred(w, a, int(round((1 - p) * 8))), x - im.width * sc / 2, y + (1 - p) * 24, p * out, sc * (1.08 - 0.08 * p))
             x -= (im.width + gap) * sc
 
@@ -153,9 +153,9 @@ def bot_bubble(txt, size=38):
 def scene_hook(f, t):
     if t > T_BEFORE + 0.1: return
     out = 1 - prog(t, T_BEFORE - 0.35, 0.3)
-    p = ease_back(prog(t, 0.0, 0.6))
+    p = 1.0 if t < 0.6 else 1.0
     place(f, shop_icon(), CX, CY - 30 + math.sin(t * 3) * 6, clamp(p * 1.4) * out, 0.6 + 0.4 * p)
-    brackets(f, CX, CY - 20, 600, 0.2, t, out=out)
+    brackets(f, CX, CY - 20, 600, -1.0, t, out=out)
     lay, d = overlay(f)  # sparkles
     for k in range(10):
         ph = (t * 0.4 + k * 0.1) % 1
@@ -378,8 +378,6 @@ def frame(i):
     wipe(f, t)
     scene_outro(f, t)
     if t < T_OUT: captions(f, t)
-    w = int(W * clamp(t / DUR))
-    if w > 0: f.alpha_composite(gradient(w, 8, BLUE, CYAN).convert("RGBA"), (0, H - 8))
     return f.convert("RGB")
 
 if __name__ == "__main__":

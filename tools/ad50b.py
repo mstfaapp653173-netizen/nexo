@@ -111,8 +111,6 @@ def frame2(i):
         to = t - SHIFT
         scene_problem(f, to); scene_bot(f, to); scene_site(f, to); scene_steps(f, to); scene_outro(f, to)
         if 4.6 < to < 12.5: captions(f, to)
-    w = int(W * clamp(t / DUR2))
-    if w > 0: f.alpha_composite(gradient(w, 8, BLUE, CYAN).convert("RGBA"), (0, H - 8))
     return f.convert("RGB")
 
 if __name__ == "__main__":
