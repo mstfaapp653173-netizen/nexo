@@ -1,6 +1,6 @@
 # NEXO auto video ads — playbook
 
-Every run makes ONE brand-new vertical video ad (1080x1920, 30fps, ~50 s, owner's choice) for NEXO, posts it as a Reel
+Every run makes ONE brand-new vertical video ad (1080x1920, 30fps, EXACTLY 44 s, owner's choice since 2026-11-26) for NEXO, posts it as a Reel
 to the Facebook Page and Instagram, and logs it in `posted.log`.
 
 ## Brand (do not change)
@@ -17,7 +17,7 @@ to the Facebook Page and Instagram, and logs it in `posted.log`.
   shows products, confirms orders, 24/7) and professional websites.
 
 ## Algorithm rules (Instagram + Facebook Reels)
-- Length ~50 s (owner's requirement). Script 95–115 words. Keep it moving: a new visual every 2–4 s so viewers keep watching.
+- Length EXACTLY 44 s (owner's requirement since 2026-11-26; older notes saying 50 s are outdated). Script 80–92 words; trim/pad the final render to 44.0 s (end card holds the last seconds). Keep it moving: a new visual every 2–4 s.
 - First second must make a shop owner think "this is me" (friendly, never aggressive).
 - End every video and caption with a send prompt, e.g. "دزه لصاحب محل تعرفه" (DM sends are the strongest signal).
 - Caption: include natural search keywords (بوت رد تلقائي، موظف مبيعات ذكي، تصميم مواقع بالعراق، مطاعم، محلات).
@@ -41,7 +41,7 @@ Arabic text uses Cairo (tools/fonts, OFL licence): render.AR = Cairo-ExtraBold, 
 ElevenLabs connector, voice "علي البزاز" voice_id `7GuGTyc18I5wWanLbbNq`, model `eleven_v4`,
 generations_count 1, use creative_create_flow or the flow `OlAnO6Js6QgnCkILfpfC`.
 Download content_url with curl (elevenlabsusercontent.com is allowed). Get phrase timings with
-`ffmpeg -af silencedetect=n=-35dB:d=0.18`. Keep the script 95–115 words (≈800 credits).
+`ffmpeg -af silencedetect=n=-35dB:d=0.18`. Keep the script 80–92 words (≈650 credits).
 Account is on the free tier (~10k credits/month): check `account_get_usage` first; if fewer than 900 credits
 remain, skip the run and report it.
 If a generation fails with "busy" (nothing is charged), wait 3 minutes and try again, up to 8 attempts.
