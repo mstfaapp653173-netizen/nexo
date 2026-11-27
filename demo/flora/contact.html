@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>تواصل معنا واحجز موعدك | فلورا كلينك</title>
+<meta name="description" content="احجز موعدك في مركز فلورا لطب وتجميل الأسنان. اتصل على 07719977556 أو 07819977556.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="contact">
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">الرئيسية</a> / تواصل معنا</div>
+    <h1 class="fade-words"><span data-line>احجز موعدك</span></h1>
+    <p class="lead">اتصل بنا مباشرة أو اترك بياناتك، ونرجع نتصل بيك لتأكيد الموعد.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap contact-grid">
+    <div class="info-list reveal">
+      <div class="info"><div class="ic" data-icon="phone"></div><div><b>اتصل بنا</b><a class="num" href="tel:+9647719977556">07719977556</a> <span>أو</span> <a class="num" href="tel:+9647819977556">07819977556</a></div></div>
+      <!-- CONFIRM: help line number 077000444477 appears in the current site header; check it is still in use. -->
+      <div class="info"><div class="ic" data-icon="user"></div><div><b>خط المساعدة</b><a class="num" href="tel:+96477000444477">077000444477</a> <span>من 8 صباحاً إلى 6 مساءً</span></div></div>
+      <!-- CONFIRM: hours. Current site lists Sat to Thu 8:00 to 20:00 on the contact page. -->
+      <div class="info"><div class="ic" data-icon="clock"></div><div><b>أوقات الدوام</b><span>السبت إلى الخميس، من 8 صباحاً إلى 8 مساءً</span></div></div>
+      <div class="info"><div class="ic" data-icon="pin"></div><div><b>الفرع الرئيسي</b><span>بغداد، المنصور، حي المهندسين، مقابل السفارة التونسية</span><br><a href="https://www.google.com/maps?q=33.3577109,44.4140207" style="color:var(--teal);font-weight:700">افتح على خرائط Google</a> <span>·</span> <a href="about.html#branches" style="color:var(--teal);font-weight:700">كل الفروع</a></div></div>
+      <div class="info"><div class="ic" data-icon="smile"></div><div><b>تابعنا</b>
+        <div class="social">
+          <a href="https://www.facebook.com/Floraclinic1" aria-label="فيسبوك" data-icon="fb"></a>
+          <a href="https://www.instagram.com/flora.clinic1" aria-label="إنستغرام" data-icon="ig"></a>
+          <a href="https://www.tiktok.com/@flora.clinic" aria-label="تيك توك" data-icon="tt"></a>
+        </div></div></div>
+    </div>
+
+    <!-- Demo form: shows a success message only. Not connected to any backend until the clinic approves. -->
+    <form class="form reveal" id="book">
+      <h2 style="font-size:1.7rem">نموذج حجز موعد</h2>
+      <div class="row2">
+        <label>الاسم الكامل<input type="text" name="name" required autocomplete="name"></label>
+        <label>رقم الهاتف<input type="tel" name="phone" required inputmode="tel" dir="ltr" autocomplete="tel"></label>
+      </div>
+      <div class="row2">
+        <label>الخدمة
+          <select name="service" id="svcSelect"><option value="">استشارة عامة</option></select>
+        </label>
+        <label>الفرع
+          <select name="branch">
+            <option>بغداد، المنصور</option><option>بغداد، شارع فلسطين</option><option>بغداد، الأميرات</option><option>كربلاء</option><option>الرمادي</option>
+          </select>
+        </label>
+      </div>
+      <label>ملاحظات (اختياري)<textarea name="msg" rows="3"></textarea></label>
+      <button class="btn btn-main" type="submit">أرسل طلب الحجز</button>
+      <div class="form-ok">تم استلام طلبك، راح نتصل بيك قريباً لتأكيد الموعد.</div>
+      <p class="note">بالضغط على الزر توافق على تواصلنا معك بخصوص الموعد.</p>
+    </form>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
